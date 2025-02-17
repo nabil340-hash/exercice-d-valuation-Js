@@ -1,6 +1,13 @@
 #fond {
     background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+.input-center {
+    text-align: center;
+}
+
 p{
     color: aliceblue;
     display: flex;

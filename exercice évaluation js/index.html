@@ -10,16 +10,82 @@
     <!-- link bootstrap css et js -->
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script defer type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Style pour centrer verticalement et horizontalement */
+        #fond {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input-center {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container mt-5" id="fond">
-        <div class="flex flex-col justify-content-center text-center">
-            <div class="container w-50 ">
-                <p class="border border-1 rounded text-light">Calculateur de Remise </p>
+    <div class="container-fluid d-flex justify-content-center align-items-center" id="fond">
+        <div class="text-center input-center">
+            <div class="container w-50 mb-4">
+                <p class="border border-1 rounded text-light p-2">Calculateur de Remise</p>
+            </div>
+            <div class="d-flex flex-column align-items-center gap-3">
+                <div class="d-flex gap-2 justify-content-center">
+                    <p>Prix initial</p>
+                    <input id="prixInitial" type="text" class="form-control w-auto">
+                    <button onclick="ok()" class="btn btn-danger border border-1 rounded">ok</button>
+                </div>
+                <div class="d-flex gap-2 justify-content-center">
+                    <p>Pourcentage de la remise souhaitée</p>
+                    <input id="pourcentageRemise" type="text" class="form-control w-auto">
+                    <button onclick="ok()" class="btn btn-danger border border-1 rounded">ok</button>
+                </div>
+                <div class="d-flex gap-2 justify-content-center">
+                    <p>Prix final</p>
+                    <input id="prixFinal" type="text" class="form-control w-auto" readonly>
+                    <button onclick="clearInput()" class="btn btn-danger border border-1 rounded">Effacer</button>
+                </div>
             </div>
         </div>
     </div>
+    <script>
+        function calculerRemise(prix, pourcentageRemise) {
+    // Vérifier si les entrées sont des nombres valides
+    if (isNaN(prix) || isNaN(pourcentageRemise) || prix <= 0 || pourcentageRemise < 0 || pourcentageRemise > 100) {
+        return "Entrée invalide";
+    }
+
+    // Calculer la remise et le prix final
+    const remise = (prix * pourcentageRemise) / 100;
+    const prixFinal = prix - remise;
+
+    // Retourner le prix final arrondi à deux décimales
+    return prixFinal.toFixed(2);
+}
+
+// Fonction pour récupérer les valeurs des champs et afficher le prix final
+function ok() {
+    // Récupérer les valeurs des champs input par leur id
+    const prixInitial = parseFloat(document.getElementById('prixInitial').value);
+    const pourcentageRemise = parseFloat(document.getElementById('pourcentageRemise').value);
+
+    // Calculer le prix final en appelant la fonction
+    const prixFinal = calculerRemise(prixInitial, pourcentageRemise);
+
+    // Afficher le prix final dans le champ "Prix final"
+    document.getElementById('prixFinal').value = prixFinal;
+}
+
+// Fonction pour effacer les champs de saisie
+function clearInput() {
+    document.getElementById('prixInitial').value = '';
+    document.getElementById('pourcentageRemise').value = '';
+    document.getElementById('prixFinal').value = '';
+}
+
+    </script>
 </body>
 
 </html>
