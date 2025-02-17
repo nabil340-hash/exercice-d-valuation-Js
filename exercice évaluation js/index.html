@@ -52,33 +52,33 @@
     </div>
     <script>
         function calculerRemise(prix, pourcentageRemise) {
-    // Vérifier si les entrées sont des nombres valides
+    /* Vérifier si les entrées sont des nombres valides*/
     if (isNaN(prix) || isNaN(pourcentageRemise) || prix <= 0 || pourcentageRemise < 0 || pourcentageRemise > 100) {
         return "Entrée invalide";
     }
 
-    // Calculer la remise et le prix final
+    /* Calculer la remise et le prix final*/
     const remise = (prix * pourcentageRemise) / 100;
     const prixFinal = prix - remise;
 
-    // Retourner le prix final arrondi à deux décimales
+    /* Retourner le prix final arrondi à deux décimales*/
     return prixFinal.toFixed(2);
 }
 
-// Fonction pour récupérer les valeurs des champs et afficher le prix final
+/* Fonction pour récupérer les valeurs des champs et afficher le prix final*/
 function ok() {
-    // Récupérer les valeurs des champs input par leur id
+    /* Récupérer les valeurs des champs input par leur id*/
     const prixInitial = parseFloat(document.getElementById('prixInitial').value);
     const pourcentageRemise = parseFloat(document.getElementById('pourcentageRemise').value);
 
-    // Calculer le prix final en appelant la fonction
+    /* Calculer le prix final en appelant la fonction*/
     const prixFinal = calculerRemise(prixInitial, pourcentageRemise);
 
-    // Afficher le prix final dans le champ "Prix final"
+    /* Afficher le prix final dans le champ "Prix final"*/
     document.getElementById('prixFinal').value = prixFinal;
 }
 
-// Fonction pour effacer les champs de saisie
+/* Fonction pour effacer les champs de saisie*/
 function clearInput() {
     document.getElementById('prixInitial').value = '';
     document.getElementById('pourcentageRemise').value = '';
