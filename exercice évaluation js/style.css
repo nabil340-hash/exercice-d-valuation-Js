@@ -1,0 +1,8 @@
+#fond {
+    background-color: black;
+}
+p{
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+}
